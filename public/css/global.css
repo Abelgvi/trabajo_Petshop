@@ -1,0 +1,238 @@
+/* --- IMPORTAR FUENTES --- */
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;700&display=swap');
+
+/* --- VARIABLES GLOBALES --- */
+:root {
+    --color-primary: #41D76B;
+    --color-bg: #F2F1F1;
+    --color-accent: #291711;
+    --color-text: #000000;
+    --color-card: #DCD1D1;
+    --font-heading: 'Plus Jakarta Sans', sans-serif;
+    --font-body: 'Atkinson Hyperlegible', sans-serif;
+    --border-radius: 12px;
+}
+
+/* --- RESET Y BASE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-bg);
+    font-family: var(--font-body);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--color-text);
+    margin-bottom: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* --- HEADER --- */
+header {
+    background-color: var(--color-primary); /* Malaquita */
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+nav ul li a {
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #fff;
+}
+
+/* --- BARRA BUSCADORA --- */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    width: 250px;
+}
+
+.search-bar i {
+    color: var(--color-accent);
+    font-size: 1rem;
+}
+
+/* --- ICONOS Y TOOLTIP --- */
+.nav-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-icons a {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-icons i {
+    font-size: 1.6rem;
+    transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.nav-icons a::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -32px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-accent);
+    color: #fff;
+    padding: 0.35rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.nav-icons a:hover::after {
+    opacity: 1;
+}
+
+.nav-icons a:hover i {
+    transform: scale(1.15);
+}
+
+/* --- COMPONENTES --- */
+.btn-primary {
+    background-color: var(--color-accent);
+    color: #fff;
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--border-radius);
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition:  0.3s ease;
+
+}
+
+.btn-secondary {
+    background-color: #fff;
+    color: var(--color-accent);
+    border: 2px solid var(--color-accent);
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+    transform: scale(1.05);
+}
+
+.product-card {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-card);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-primary);
+}
+
+.product-image-placeholder {
+    height: 150px;
+    background: #eee;
+    margin-bottom: 1rem;
+    border-radius: var(--border-radius);
+}
+
+.tag {
+    background-color: var(--color-card);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+/* --- FOOTER --- */
+.footer {
+    background-color: var(--color-accent);
+    color: #fff;
+    padding: 3rem 2rem;
+    margin-top: 3rem;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-column h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 0.6rem;
+}
+
+.footer-column ul li a {
+    color: #ddd;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+    color: #fff;
+}
+
+.footer-legal {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #ccc;
+    line-height: 1.4;
+}

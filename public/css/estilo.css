@@ -1,0 +1,294 @@
+/* --- IMPORTAR FUENTES --- */
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;700&display=swap');
+
+/* --- VARIABLES GLOBALES (Guía de Estilos) --- */
+:root {
+    /* Paleta de Colores */
+    --color-primary: #41D76B;    /* Malaquita: Cabecera, logo, menús */
+    --color-bg: #FAF9F9;         /* Blanco Nieve: Fondo general */
+    --color-accent: #291711;     /* Coffee Bean: Detalles y bordes */
+    --color-text: #000000;       /* Negro: Textos generales */
+    --color-card: #DCD1D1;       /* Gris Polvoriento: Etiquetas/Tarjetas */
+    
+    /* Tipografía*/
+    --font-heading: 'Plus Jakarta Sans', sans-serif;
+    --font-body: 'Atkinson Hyperlegible', sans-serif;
+    
+    /* Bordes redondeados*/
+    --border-radius: 12px;
+}
+
+/* --- RESET Y ESTILOS BASE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-bg); 
+    font-family: var(--font-body); /*  */
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-heading); /*  */
+    color: var(--color-text);
+    margin-bottom: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* --- CABECERA Y NAVEGACIÓN--- */
+header {
+    background-color: var(--color-primary); /* Malaquita */
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--border-radius);
+    margin: 0 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    width: 250px; /* puedes ajustarlo */
+}
+
+.search-bar i {
+    color: var(--color-accent);
+    font-size: 1rem;
+}
+
+nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+nav ul li a {
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #fff;
+}
+
+.nav-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-icon {
+    font-size: 1.2rem; 
+    cursor: pointer;
+}
+
+/* Contenedor de iconos */
+.nav-icons a {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip oculto por defecto */
+.nav-icons a::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -32px; /* debajo del icono */
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-accent);
+    color: #fff;
+    padding: 0.35rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+/* Mostrar tooltip al hacer hover */
+.nav-icons a:hover::after {
+    opacity: 1;
+}
+
+/* Iconos más grandes */
+.nav-icons i {
+    font-size: 1.6rem;
+    transition: color 0.3s ease;
+}
+
+/* --- COMPONENTES --- */
+.btn-primary {
+    background-color: var(--color-accent);
+    color: #fff;
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--border-radius);
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+}
+
+
+.product-card {
+    background-color: var(--color-bg); /* Fondo contraste */
+    border: 1px solid var(--color-card);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-primary);
+}
+
+.tag {
+    background-color: var(--color-card); /* Gris polvoriento para etiquetas [cite: 31] */
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.featured {
+    padding: 0 2rem;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.product-image-placeholder {
+    height: 150px;
+    background: #eee;
+    margin-bottom: 1rem;
+    border-radius: var(--border-radius);
+}
+/* --- FOOTER --- */
+/* --- FOOTER PROFESIONAL --- */
+
+.footer {
+    background-color: var(--color-accent);
+    color: #fff;
+    padding: 3rem 2rem;
+    margin-top: 3rem;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-column h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 0.6rem;
+}
+
+.footer-column ul li a {
+    color: #ddd;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+    color: #fff;
+}
+
+.footer-legal {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #ccc;
+    line-height: 1.4;
+}
+
+
+
+/* --- ESTILOS NUEVOS PARA CATEGORÍAS CIRCULARES --- */
+
+.categories-section {
+    display: flex;
+    justify-content: center;
+    gap: 3rem; /* Separación entre círculos */
+    margin: 3rem 0;
+    padding: 0 2rem;
+}
+
+.category-item {
+    text-align: center;
+    max-width: 120px; /* Ancho máximo para el bloque de texto */
+}
+
+/* El contenedor circular de la imagen */
+.category-circle {
+    display: block; /* Necesario para que el enlace tenga dimensiones */
+    width: 150px;   /* Ancho del círculo */
+    height: 150px;  /* Alto del círculo (debe ser igual al ancho) */
+    border-radius: 50%; /* Esto crea el círculo perfecto */
+    overflow: hidden; /* Recorta cualquier parte de la imagen que sobresalga */
+    margin: 0 auto 0.8rem auto; /* Centrado horizontal y margen inferior */
+    border: 3px solid transparent; /* Borde transparente preparado para el hover */
+    transition: all 0.3s ease; /* Suaviza la animación al pasar el ratón */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra suave para dar profundidad */
+}
+
+/* La imagen dentro del círculo */
+.category-circle img {
+    width: 100%;
+    height: 100%;
+    /* LA CLAVE: 'cover' hace que la imagen llene el círculo sin deformarse, 
+       recortando los excesos si no es cuadrada */
+    object-fit: cover; 
+    display: block; /* Elimina espacios extraños debajo de la imagen */
+}
+
+/* Efecto Hover (al pasar el ratón) */
+.category-circle:hover {
+    border-color: var(--color-primary); /* Borde color Malaquita */
+    transform: translateY(-5px) scale(1.05); /* Se eleva y crece ligeramente */
+    box-shadow: 0 8px 15px rgba(65, 215, 107, 0.3); /* Sombra verde más intensa */
+}
+
+.category-item p {
+    font-family: var(--font-heading);
+    font-weight: bold;
+    color: var(--color-accent); /* Coffe Bean para el texto */
+}
