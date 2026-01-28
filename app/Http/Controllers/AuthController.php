@@ -13,6 +13,7 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+   
     // Procesa los datos del formulario
     public function login(Request $request)
     {
@@ -23,9 +24,21 @@ class AuthController extends Controller
         ]);
 
         // 2. Intentamos loguear al usuario
-        // (Laravel comprueba email y contraseña encriptada automáticamente)
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+
+            // --- NUEVO: RECUPERAR EL CARRITO DE LA BBDD ---
+            /** @var \App\Models\User $user */
+            $user = Auth::user();
+
+            // Si el usuario tiene un carrito guardado de la última vez...
+            if ($user->carrito_data) {
+                $dbCart = json_decode($user->carrito_data, true);
+                
+                // ... lo volvemos a poner en la sesión actual
+                session()->put('cart', $dbCart);
+            }
+            // ----------------------------------------------
 
             // Si entra, lo mandamos a la tienda o al inicio
             return redirect()->intended('/');

@@ -15,23 +15,30 @@ class CartController extends Controller
 
         $cart = session()->get('cart', []);
 
-        // Si existe, sumamos cantidad. Si no, lo creamos con 1.
         if(isset($cart[$id])) {
             $cart[$id]++;
         } else {
             $cart[$id] = 1;
         }
 
+        // 1. Guardamos en SESIÓN (Siempre)
         session()->put('cart', $cart);
+
+        // 2. Si está LOGUEADO, guardamos también en la BASE DE DATOS
+        if (auth()->check()) {
+            $user = auth()->user();
+            $user->carrito_data = json_encode($cart); // Convertimos array a texto
+            $user->save();
+        }
 
         return response()->json([
             'success' => true, 
-            'message' => 'Producto añadido correctamente',
+            'message' => 'Producto añadido',
             'total_items' => array_sum($cart)
         ]);
     }
 
-    // VER CARRITO
+    // VER CARRITO, es la funcion indice y esta se encarga de 
     public function index()
     {
         $cart = session()->get('cart', []);
@@ -61,6 +68,13 @@ class CartController extends Controller
         if(isset($cart[$id])) {
             unset($cart[$id]);
             session()->put('cart', $cart);
+
+            // Actualizar BD si está logueado
+            if (auth()->check()) {
+                $user = auth()->user();
+                $user->carrito_data = json_encode($cart);
+                $user->save();
+            }
         }
         return redirect()->back();
     }
