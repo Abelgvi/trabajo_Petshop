@@ -34,7 +34,7 @@
         </div>
 
         <div class="nav-icons">
-            <div class="nav-icons">
+            
     
     
     @guest

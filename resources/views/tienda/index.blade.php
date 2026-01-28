@@ -49,6 +49,46 @@
 @push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Delegación de eventos para capturar clics en botones creados dinámicamente
+        document.body.addEventListener('click', function(e) {
+            if (e.target && e.target.closest('.btn-add-cart')) {
+                e.preventDefault(); // Evita saltos de página
+                
+                let btn = e.target.closest('.btn-add-cart');
+                let id = btn.getAttribute('data-id');
+                
+                // Efecto visual simple (cambia texto)
+                let originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> ...';
+
+                fetch(`/carrito/add/${id}`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if(data.success) {
+                        alert(data.message); // O usa una librería de notificaciones
+                        // Si pusiste el contador en el header, podrías actualizarlo aquí
+                        // document.querySelector('.cart-count').innerText = data.total_items;
+                    }
+                })
+                .catch(error => console.error('Error:', error))
+                .finally(() => {
+                    btn.innerHTML = originalText; // Restaurar botón
+                });
+            }
+        });
+    });
+</script>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
         // Seleccionamos todos los checkboxes
         const filters = document.querySelectorAll('.filters input[type="checkbox"]');
 
